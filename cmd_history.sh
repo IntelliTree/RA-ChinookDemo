@@ -187,3 +187,9 @@ vim lib/RA/ChinookDemo.pm
  # - Needed because local app controllers always take precidence
 rm -f lib/RA/ChinookDemo/Controller/Root.pm
 Commit '(1) - Bare-bones working app (RapidDbic)'
+ # Start the test server:
+script/ra_chinookdemo_server.pl
+ #
+ # Configure joined columns
+vim lib/RA/ChinookDemo.pm
+Commit '(2) - example joined columns (grid configs)'
