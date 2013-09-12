@@ -211,3 +211,9 @@ script/ra_chinookdemo_server.pl
  # Configure editing across relationships
 vim lib/RA/ChinookDemo.pm
 Commit '(5) - Example editing across relationships'
+ # Start the test server:
+script/ra_chinookdemo_server.pl
+ #
+ # Set certain Sources to be dropdowns 
+vim lib/RA/ChinookDemo.pm
+Commit '(6) - set auto_editor_type (combo) + column TableSpecs'

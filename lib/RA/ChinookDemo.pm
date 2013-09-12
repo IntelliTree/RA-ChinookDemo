@@ -59,10 +59,54 @@ __PACKAGE__->config(
                   display_column => 'name'
                },
                Genre => {
-                  display_column => 'name'
+                  display_column => 'name',
+                  auto_editor_type => 'combo'
                },
                MediaType => {
-                  display_column => 'name'
+                  display_column => 'name',
+                  auto_editor_type => 'combo'
+               },
+               Track => {
+                  columns => {
+                     bytes => {
+                        renderer => 'Ext.util.Format.fileSize'
+                     },
+                     unitprice => {
+                        renderer => 'Ext.util.Format.usMoney',
+                        header   => 'Price',
+                        width    => 50
+                     },
+                     name => {
+                        header => 'Name', width => 140
+                     },
+                     albumid => {
+                        header => 'Album', width => 130
+                     },
+                     mediatypeid => {
+                        header => 'Media Type', width => 165
+                     },
+                     genreid => {
+                        header => 'Genre', width => 110
+                     },
+                     playlist_tracks => {
+                        sortable  => 0
+                     },
+                     milliseconds => {
+                        hidden   => 1
+                     },
+                     composer => {
+                        hidden   => 1,
+                        no_quick_search => 1,
+                        no_multifilter  => 1
+                     },
+                     trackid => {
+                        #allow_add  => 1,
+                        #allow_edit => 1
+                        no_column   => 1,
+                        no_quick_search => 1,
+                        no_multifilter  => 1
+                     },
+                  },
                },
             }, # (TableSpecs)
          }, # (DB)
