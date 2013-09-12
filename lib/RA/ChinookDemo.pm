@@ -35,6 +35,13 @@ __PACKAGE__->config(
                Album => {
                   include_colspec => ['*','artistid.name'] 
                },
+               Genre => {
+                  # Leave persist_immediately on without the add form
+                  # (inserts blank/default rows immediately):
+                  use_add_form => 0,
+                  # No delete confirmations:
+                  confirm_on_destroy => 0
+               },
                Invoice => {
                   # Delete invoice_lines with invoice (cascade):
                   destroyable_relspec => ['*','invoice_lines']
@@ -47,8 +54,30 @@ __PACKAGE__->config(
                      'invoiceid.billing*'
                   ],
                },
+               MediaType => {
+                  # Use the grid itself to set new row values:
+                  use_add_form => 0, #<-- also disables autoload_added_record
+                  persist_immediately => {
+                     create  => 0,
+                     update  => 1,
+                     destroy => 1
+                  },
+                  # No delete confirmations:
+                  confirm_on_destroy => 0
+               },
                Track => {
-                  include_colspec => ['*','albumid.artistid.*'] 
+                  include_colspec => ['*','albumid.artistid.*'],
+                  # Don't persist anything immediately:
+                  persist_immediately => {
+                     # 'create => 0' changes these defaults:
+                     #   use_add_form => '0' (normally 'tab')
+                     #   autoload_added_record => 0 (normally '1')
+                     create  => 0,
+                     update  => 0,
+                     destroy => 0
+                  },
+                  # Use the add form in a window:
+                  use_add_form => 'window'
                },
             }, # (grid_params)
             TableSpecs => {

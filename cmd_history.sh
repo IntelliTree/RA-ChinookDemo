@@ -217,3 +217,9 @@ script/ra_chinookdemo_server.pl
  # Set certain Sources to be dropdowns 
 vim lib/RA/ChinookDemo.pm
 Commit '(6) - set auto_editor_type (combo) + column TableSpecs'
+ # Start the test server:
+script/ra_chinookdemo_server.pl
+ #
+ # Set custom CRUD options
+vim lib/RA/ChinookDemo.pm
+Commit '(7) - configured various CRUD options'
