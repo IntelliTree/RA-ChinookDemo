@@ -229,3 +229,9 @@ script/ra_chinookdemo_server.pl
  # Setup a virtual column
 vim lib/RA/ChinookDemo.pm
 Commit '(8) - created "full_name" virtual column'
+ # Start the test server:
+script/ra_chinookdemo_server.pl
+ #
+ # Make virtual column writable
+vim lib/RA/ChinookDemo.pm
+Commit '(9) - full_name virtual column writable + display_column'

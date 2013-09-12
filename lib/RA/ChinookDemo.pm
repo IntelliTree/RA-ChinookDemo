@@ -87,6 +87,10 @@ __PACKAGE__->config(
                Artist => {
                   display_column => 'name'
                },
+               Employee => {
+                  # Use virtual column 'full_name' as the display column:
+                  display_column => 'full_name'
+               },
                Genre => {
                   display_column => 'name',
                   auto_editor_type => 'combo'
@@ -144,7 +148,12 @@ __PACKAGE__->config(
                      data_type => "varchar",
                      is_nullable => 0,
                      size => 255,
-                     sql => 'SELECT self.firstname || " " || self.lastname'
+                     sql => 'SELECT self.firstname || " " || self.lastname',
+                     set_function => sub {
+                        my ($row, $value) = @_;
+                        my ($fn, $ln) = split(/\s+/,$value,2);
+                        $row->update({ firstname=>$fn, lastname=>$ln });
+                     },
                   },
                },
             }, # (virtual_columns)
