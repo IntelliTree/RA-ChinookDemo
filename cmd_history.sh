@@ -193,3 +193,9 @@ script/ra_chinookdemo_server.pl
  # Configure joined columns
 vim lib/RA/ChinookDemo.pm
 Commit '(2) - example joined columns (grid configs)'
+ # Start the test server:
+script/ra_chinookdemo_server.pl
+ #
+ # Set 'display_column' for Sources
+vim lib/RA/ChinookDemo.pm
+Commit '(3) - configured display_columns (TableSpecs)'

@@ -34,6 +34,20 @@ __PACKAGE__->config(
                   include_colspec => ['*','albumid.artistid.*'] 
                },
             }, # (grid_params)
+            TableSpecs => {
+               Album => {
+                  display_column => 'title'
+               },
+               Artist => {
+                  display_column => 'name'
+               },
+               Genre => {
+                  display_column => 'name'
+               },
+               MediaType => {
+                  display_column => 'name'
+               },
+            }, # (TableSpecs)
          }, # (DB)
       }, # (configs)
     }, # ('Plugin::RapidApp::RapidDbic')
