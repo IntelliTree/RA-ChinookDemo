@@ -131,3 +131,17 @@ ls -lh sql/Chinook_Sqlite_AutoIncrementPKs.sql
 time sqlite3 chinook.db < sql/Chinook_Sqlite_AutoIncrementPKs.sql
  #
 Commit 'setup chinook SQLite database'
+ #
+ # Create DBIC schema/model (using the Catalyst Helper)
+ # -See: metacpan.org/module/Catalyst::Helper::Model::DBIC::Schema
+script/ra_chinookdemo_create.pl \
+   model DB \
+   DBIC::Schema \
+   RA::ChinookDemo::DB \
+   create=static generate_pod=0 \
+   dbi:SQLite:chinook.db \
+   sqlite_unicode=1 \
+   on_connect_call='use_foreign_keys' \
+   quote_names=1  #<-- required for RapidApp 
+ #
+Commit 'Created DBIC schema/model "DB"'
