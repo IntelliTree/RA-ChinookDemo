@@ -145,3 +145,5 @@ script/ra_chinookdemo_create.pl \
    quote_names=1  #<-- required for RapidApp 
  #
 Commit 'Created DBIC schema/model "DB"'
+ #
+Commit '01_prepared_app'
