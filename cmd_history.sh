@@ -199,3 +199,9 @@ script/ra_chinookdemo_server.pl
  # Set 'display_column' for Sources
 vim lib/RA/ChinookDemo.pm
 Commit '(3) - configured display_columns (TableSpecs)'
+ # Start the test server:
+script/ra_chinookdemo_server.pl
+ #
+ # Enable grid editing
+vim lib/RA/ChinookDemo.pm
+Commit '(4) - turned on grid editing for all Sources'
