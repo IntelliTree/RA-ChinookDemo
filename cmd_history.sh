@@ -147,3 +147,43 @@ script/ra_chinookdemo_create.pl \
 Commit 'Created DBIC schema/model "DB"'
  #
 Commit '01_prepared_app'
+git tag 01_prepared_app
+# Push to Github (First push, with tags):
+git push -u --tags origin master 
+ #
+ # --- END PART 1 ---
+clear
+ # -- RapidApp "Chinook" Video Demo Series --
+ # 
+ #     (www.rapidapp.info/demos/chinook)
+ #
+ #  Part 2. RapidDbic Basics
+ #
+ # * Progress so far, from Part 1:
+ #   * Created 'RA::ChinookDemo' with catalyst.pl
+ #   * Setup SQLite database 'chinook.db'
+ #      (http://chinookdatabase.codeplex.com/)
+ #   * Created Catalyst model 'DB' (DBIC::Schema)
+ #   * Setup git (https://github.com/IntelliTree/RA-ChinookDemo)
+ #   * 'Commit' shell alias - records cmd history with changes
+ #      (cmd_history.sh)
+ #
+ # ----
+ #
+git --no-pager log --oneline --reverse
+git tag
+ #
+ # To jump straight to this point from scratch:
+ #
+ #   git clone https://github.com/IntelliTree/RA-ChinookDemo
+ #   cd RA-ChinookDemo
+ #   git checkout 01_prepared_app
+ #
+ #
+ # Configure bare-bones RapidDbic:
+vim lib/RA/ChinookDemo.pm
+ #
+ # Remove the auto-generated Root Controller:
+ # - Needed because local app controllers always take precidence
+rm -f lib/RA/ChinookDemo/Controller/Root.pm
+Commit '(1) - Bare-bones working app (RapidDbic)'
