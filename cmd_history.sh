@@ -120,3 +120,14 @@ alias RestoreHistNewlines='\
  #
  # Now we can record progress & history in a simple one-liner:
 Commit 'first commit - freshly created Catalyst app'
+clear
+ # Download the Chinook sample database:
+ # (http://chinookdatabase.codeplex.com/)
+mkdir sql
+cp ../Chinook1.4_Sqlite/Chinook_Sqlite_AutoIncrementPKs.sql sql/
+ls -lh sql/Chinook_Sqlite_AutoIncrementPKs.sql
+ #
+ # Create new SQLite database (takes ~ 10 minutes)
+time sqlite3 chinook.db < sql/Chinook_Sqlite_AutoIncrementPKs.sql
+ #
+Commit 'setup chinook SQLite database'
