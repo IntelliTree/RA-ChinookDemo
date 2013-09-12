@@ -205,3 +205,9 @@ script/ra_chinookdemo_server.pl
  # Enable grid editing
 vim lib/RA/ChinookDemo.pm
 Commit '(4) - turned on grid editing for all Sources'
+ # Start the test server:
+script/ra_chinookdemo_server.pl
+ #
+ # Configure editing across relationships
+vim lib/RA/ChinookDemo.pm
+Commit '(5) - Example editing across relationships'
