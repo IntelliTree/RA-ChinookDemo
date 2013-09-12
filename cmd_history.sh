@@ -223,3 +223,9 @@ script/ra_chinookdemo_server.pl
  # Set custom CRUD options
 vim lib/RA/ChinookDemo.pm
 Commit '(7) - configured various CRUD options'
+ # Start the test server:
+script/ra_chinookdemo_server.pl
+ #
+ # Setup a virtual column
+vim lib/RA/ChinookDemo.pm
+Commit '(8) - created "full_name" virtual column'

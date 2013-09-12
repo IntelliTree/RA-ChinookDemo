@@ -138,6 +138,16 @@ __PACKAGE__->config(
                   },
                },
             }, # (TableSpecs)
+            virtual_columns => {
+               Employee => {
+                  full_name => {
+                     data_type => "varchar",
+                     is_nullable => 0,
+                     size => 255,
+                     sql => 'SELECT self.firstname || " " || self.lastname'
+                  },
+               },
+            }, # (virtual_columns)
          }, # (DB)
       }, # (configs)
     }, # ('Plugin::RapidApp::RapidDbic')
