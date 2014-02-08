@@ -31,6 +31,20 @@ __PACKAGE__->has_many(
 # Created by DBIx::Class::Schema::Loader v0.07036 @ 2013-09-12 15:36:29
 # DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:i2KIMgZBZJnsgkwIHtfWUQ
 
+__PACKAGE__->has_many(
+  "rock_tracks",
+  "RA::ChinookDemo::DB::Result::Track",
+  sub {
+    my $args = shift;
+    
+    return (
+      { "$args->{foreign_alias}.mediatypeid" => { '=' => { -ident => "$args->{self_alias}.mediatypeid"} },
+        "$args->{foreign_alias}.genreid"   => 1,
+      },
+    );
+    
+  }
+);
 
 # You can replace this text with custom code or comments, and it will be preserved on regeneration
 __PACKAGE__->meta->make_immutable;

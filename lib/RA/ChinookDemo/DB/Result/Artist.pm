@@ -31,6 +31,18 @@ __PACKAGE__->has_many(
 # Created by DBIx::Class::Schema::Loader v0.07036 @ 2013-09-12 15:36:29
 # DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:EusSaT3RBFkQFnk46nXHBg
 
+# Flip is_nullable flag on 'name' - prevents warning in 'self_titled_album' rel below
+__PACKAGE__->add_columns(
+  "name" => { data_type => "nvarchar", is_nullable => 0, size => 120 },
+);
+
+__PACKAGE__->might_have(
+  "self_titled_album",
+  "RA::ChinookDemo::DB::Result::Album",
+  { "foreign.artistid" => "self.artistid", "foreign.title" => "self.name" },
+);
+
+
 
 # You can replace this text with custom code or comments, and it will be preserved on regeneration
 __PACKAGE__->meta->make_immutable;

@@ -4,7 +4,7 @@ use namespace::autoclean;
 
 use Catalyst::Runtime 5.80;
 
-use RapidApp;
+use RapidApp 0.99030;
 
 use Catalyst qw/
     -Debug
@@ -13,7 +13,7 @@ use Catalyst qw/
 
 extends 'Catalyst';
 
-our $VERSION = '0.01';
+our $VERSION = '0.01-complex-rels';
 
 
 __PACKAGE__->config(
@@ -50,7 +50,7 @@ __PACKAGE__->config(
                   # join all columns of all relationships (first-level):
                   include_colspec => ['*','*.*'],
                   updatable_colspec => [
-                     'invoiceid','unitprice',
+                     'invoiceid','unitprice','quantity',
                      'invoiceid.billing*'
                   ],
                },
@@ -100,6 +100,7 @@ __PACKAGE__->config(
                   auto_editor_type => 'combo'
                },
                Track => {
+                  display_column => 'name',
                   columns => {
                      bytes => {
                         renderer => 'Ext.util.Format.fileSize'
