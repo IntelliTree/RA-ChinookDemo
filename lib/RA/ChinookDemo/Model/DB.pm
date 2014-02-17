@@ -1,7 +1,9 @@
 package RA::ChinookDemo::Model::DB;
+use Moose;
+extends 'Catalyst::Model::DBIC::Schema';
 
-use strict;
-use base 'Catalyst::Model::DBIC::Schema';
+use Path::Class qw(file);
+use Catalyst::Utils;
 
 my $db = file(Catalyst::Utils::home('RA::ChinookDemo'),'chinook.db');
 
