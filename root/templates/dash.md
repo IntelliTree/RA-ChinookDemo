@@ -1,0 +1,3 @@
+# Dashboard
+
+[% INCLUDE rich.tt %]

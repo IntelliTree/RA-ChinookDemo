@@ -4,11 +4,13 @@ use namespace::autoclean;
 
 use Catalyst::Runtime 5.80;
 
-use RapidApp;
+use RapidApp 0.99031;
 
 use Catalyst qw/
-    -Debug
     RapidApp::RapidDbic
+    RapidApp::AuthCore
+    RapidApp::NavCore
+    RapidApp::CoreSchemaAdmin
 /;
 
 extends 'Catalyst';
@@ -20,6 +22,21 @@ __PACKAGE__->config(
     name => 'RA::ChinookDemo',
     # Disable deprecated behavior needed by old applications
     disable_component_resolution_regex_fallback => 1,
+    
+    'Plugin::RapidApp::TabGui' => {
+      title => __PACKAGE__,
+      nav_title => 'Chinook Demo',
+      dashboard_url => '/tple/dash.md',
+    },
+    
+    'Controller::RapidApp::Template' => {
+      default_template_extension => 'html',
+      access_params => {
+        writable_regex      => '.',
+        creatable_regex     => '.',
+        deletable_regex     => '.',
+      }
+    },
 
     'Plugin::RapidApp::RapidDbic' => {
       # Only required option:
