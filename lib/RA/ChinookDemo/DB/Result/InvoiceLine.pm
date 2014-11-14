@@ -43,6 +43,28 @@ __PACKAGE__->belongs_to(
 # Created by DBIx::Class::Schema::Loader v0.07036 @ 2013-09-12 15:36:29
 # DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:/fHkaVziPDQhBw3lU+JmUA
 
+# Example of a 2-level single relationship (Invoice in-between)
+__PACKAGE__->belongs_to(
+  "customerid",
+  "RA::ChinookDemo::DB::Result::Customer",
+  sub {
+    my $args = shift;
+
+    my $MiddleRsCol = $args->{self_resultsource}->schema->resultset('Invoice')
+      ->search_rs(undef,{ 
+        alias   => 'invoice_alias',
+        columns => ['customerid']
+      })
+      ->search_rs({ 
+        'invoice_alias.invoiceid' => { -ident => "$args->{self_alias}.invoiceid" }
+      })
+      ->get_column('customerid');
+
+    return (
+      { "$args->{foreign_alias}.customerid" => { '=' => $MiddleRsCol->as_query } }
+    );
+  }
+);
 
 # You can replace this text with custom code or comments, and it will be preserved on regeneration
 __PACKAGE__->meta->make_immutable;

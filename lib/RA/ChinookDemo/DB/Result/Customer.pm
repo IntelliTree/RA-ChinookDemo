@@ -65,6 +65,30 @@ __PACKAGE__->belongs_to(
 # DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:3WdAq+vRAFXbRXBhHpK3TQ
 
 
+# Example of a 2-level multi relationship (Invoice in-between)
+__PACKAGE__->has_many(
+  "invoice_lines",
+  "RA::ChinookDemo::DB::Result::InvoiceLine",
+  sub {
+    my $args = shift;
+
+    my $MiddleRsCol = $args->{self_resultsource}->schema->resultset('Invoice')
+      ->search_rs(undef,{ 
+        alias   => 'invoice_alias', 
+        columns => ['invoiceid']
+      })
+      ->search_rs({ 
+        'invoice_alias.customerid' => { -ident => "$args->{self_alias}.customerid" }
+      })
+      ->get_column('invoiceid');
+
+    return (
+      { "$args->{foreign_alias}.invoiceid" => { -in => $MiddleRsCol->as_query } }
+    );
+  }
+);
+
+
 # You can replace this text with custom code or comments, and it will be preserved on regeneration
 __PACKAGE__->meta->make_immutable;
 1;
