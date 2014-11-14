@@ -74,22 +74,48 @@ __PACKAGE__->belongs_to(
 # Created by DBIx::Class::Schema::Loader v0.07036 @ 2013-09-12 15:36:29
 # DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:wHFFXU19HU2txd7Slmw1vg
 
-# Example of a multi-level join rel (Customer in-between)
+# Example of a 2-level multi relationship (Customer in-between)
 __PACKAGE__->has_many(
   "invoices",
   "RA::ChinookDemo::DB::Result::Invoice",
   sub {
     my $args = shift;
-    
+
     my $MiddleRsCol = $args->{self_resultsource}->schema->resultset('Customer')
-      ->search_rs(undef,{ alias => 'cust_alias' })
+      ->search_rs(undef,{
+        alias   => 'cust_alias',
+        columns => ['customerid']
+      })
       ->search_rs({ 
         'cust_alias.supportrepid' => { -ident => "$args->{self_alias}.employeeid" }
       })
       ->get_column('customerid');
-      
+
     return (
       { "$args->{foreign_alias}.customerid" => { -in => $MiddleRsCol->as_query } }
+    );
+  }
+);
+
+# Example of a 3-level multi relationship (Customer and Invoice in-between)
+__PACKAGE__->has_many(
+  "invoice_lines",
+  "RA::ChinookDemo::DB::Result::InvoiceLine",
+  sub {
+    my $args = shift;
+
+    my $MiddleRsCol = $args->{self_resultsource}->schema->resultset('Invoice')
+      ->search_rs(undef,{
+        join    => 'customerid',
+        columns => ['invoiceid'],
+      })
+      ->search_rs({
+        'customerid.supportrepid' => { -ident => "$args->{self_alias}.employeeid" }
+      })
+      ->get_column('invoiceid');
+
+    return (
+      { "$args->{foreign_alias}.invoiceid" => { -in => $MiddleRsCol->as_query } }
     );
   }
 );
