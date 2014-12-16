@@ -4,7 +4,7 @@ use namespace::autoclean;
 
 use Catalyst::Runtime 5.80;
 
-use RapidApp;
+use RapidApp 0.99650_01;
 
 use Catalyst qw/
     -Debug
