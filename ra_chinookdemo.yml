@@ -1,4 +1,13 @@
 ---
+Model::DB:
+  connect_info:
+    dsn: dbi:SQLite:chinook.db
+    on_connect_call: use_foreign_keys
+    password: ''
+    quote_names: 1
+    sqlite_unicode: 1
+    user: ''
+  schema_class: RA::ChinookDemo::DB
 Plugin::RapidApp::RapidDbic:
   configs:
     DB:

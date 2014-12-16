@@ -6,14 +6,14 @@ use base 'Catalyst::Model::DBIC::Schema';
 __PACKAGE__->config(
     schema_class => 'RA::ChinookDemo::DB',
     
-    connect_info => {
-        dsn => 'dbi:SQLite:chinook.db',
-        user => '',
-        password => '',
-        sqlite_unicode => q{1},
-        on_connect_call => q{use_foreign_keys},
-        quote_names => q{1},
-    }
+    #connect_info => {
+    #    dsn => 'dbi:SQLite:chinook.db',
+    #    user => '',
+    #    password => '',
+    #    sqlite_unicode => q{1},
+    #    on_connect_call => q{use_foreign_keys},
+    #    quote_names => q{1},
+    #}
 );
 
 =head1 NAME
