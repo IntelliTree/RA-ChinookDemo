@@ -18,7 +18,27 @@ our $VERSION = '0.01';
 
 
 __PACKAGE__->config(
-
+  'Model::DB' => {
+    RapidDbic => {
+      virtual_columns => {
+         Employee => {
+            full_name => {
+               #data_type => "varchar",
+               #is_nullable => 0,
+               #size => 255,
+               #sql => 'SELECT self.firstname || " " || self.lastname',
+               set_function => sub {
+                  my ($row, $value) = @_;
+                  my ($fn, $ln) = split(/\s+/,$value,2);
+                  $row->update({ firstname=>$fn, lastname=>$ln });
+               },
+            },
+         },
+      }, # (virtual_columns)
+    
+    }
+  
+  }
 );
 
 # Start the application

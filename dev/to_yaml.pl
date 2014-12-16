@@ -149,21 +149,21 @@ $cfg{on_plugin} = {
                   },
                },
             }, # (TableSpecs)
-            virtual_columns => {
-               Employee => {
-                  full_name => {
-                     data_type => "varchar",
-                     is_nullable => 0,
-                     size => 255,
-                     sql => 'SELECT self.firstname || " " || self.lastname',
-                     #set_function => sub {
-                     #   my ($row, $value) = @_;
-                     #   my ($fn, $ln) = split(/\s+/,$value,2);
-                     #   $row->update({ firstname=>$fn, lastname=>$ln });
-                     #},
-                  },
-               },
-            }, # (virtual_columns)
+            #virtual_columns => {
+            #   Employee => {
+            #      full_name => {
+            #         data_type => "varchar",
+            #         is_nullable => 0,
+            #         size => 255,
+            #         sql => 'SELECT self.firstname || " " || self.lastname',
+            #         set_function => sub {
+            #            my ($row, $value) = @_;
+            #            my ($fn, $ln) = split(/\s+/,$value,2);
+            #            $row->update({ firstname=>$fn, lastname=>$ln });
+            #         },
+            #      },
+            #   },
+            #}, # (virtual_columns)
          }, # (DB)
       }, # (configs)
     }, # ('Plugin::RapidApp::RapidDbic')
@@ -306,21 +306,21 @@ $cfg{on_model} = {
               },
            },
         }, # (TableSpecs)
-        virtual_columns => {
-           Employee => {
-              full_name => {
-                 data_type => "varchar",
-                 is_nullable => 0,
-                 size => 255,
-                 sql => 'SELECT self.firstname || " " || self.lastname',
-                 #set_function => sub {
-                 #   my ($row, $value) = @_;
-                 #   my ($fn, $ln) = split(/\s+/,$value,2);
-                 #   $row->update({ firstname=>$fn, lastname=>$ln });
-                 #},
-              },
-           },
-        }, # (virtual_columns)
+        #virtual_columns => {
+        #   Employee => {
+        #      full_name => {
+        #         data_type => "varchar",
+        #         is_nullable => 0,
+        #         size => 255,
+        #         sql => 'SELECT self.firstname || " " || self.lastname',
+        #         set_function => sub {
+        #            my ($row, $value) = @_;
+        #            my ($fn, $ln) = split(/\s+/,$value,2);
+        #            $row->update({ firstname=>$fn, lastname=>$ln });
+        #         },
+        #      },
+        #   },
+        #}, # (virtual_columns)
      }, # (DB)
 
   }
