@@ -20,6 +20,16 @@ our $VERSION = '0.01';
 __PACKAGE__->config(
   'Model::DB' => {
     RapidDbic => {
+      # custom grid class to use for all sources in the model:
+      grid_class => 'RA::ChinookDemo::Modules::TableBase',
+      #grid_params => {
+      #   # If we wanted to set for only one source
+      #  'Track' => {
+      #    grid_class => 'RA::ChinookDemo::Modules::TableBase',
+      #  }
+      #
+      #},
+      #
       virtual_columns => {
          Employee => {
             full_name => {
